@@ -11,6 +11,9 @@ import { globalErrorHandling } from "./utils/errorHandling.js";
 const initApp = (app, express) => {
   app.use(morgan("dev"));
   app.use(express.json({}));
+  app.get("/",(req,res,next)=>{
+    return res.json({message: 'Welcome to the API'});
+  })
   app.use("/uploads", express.static("uploads"));
   app.use(`/auth`, authRouter);
   app.use(`/user`, userRouter);
