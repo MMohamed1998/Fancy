@@ -12,7 +12,7 @@ const initApp = (app, express) => {
   app.use(morgan("dev"));
   app.use(express.json({}));
   app.get("/",(req,res,next)=>{
-    return res.json({message: 'Welcome to the API'});
+    return res.status(200).json({message: 'Welcome to the API'});
   })
   app.use("/uploads", express.static("uploads"));
   app.use(`/auth`, authRouter);
@@ -23,7 +23,7 @@ const initApp = (app, express) => {
   app.use(`/partner`, partnerRouter);
 
   app.all("*", (req, res, next) => {
-    res.status(500).send("In-valid Routing Plz check url  or  method");
+    res.status(404).send("In-valid Routing Plz check url  or  method");
   });
   app.use(globalErrorHandling);
 
